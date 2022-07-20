@@ -91,7 +91,7 @@ router.post('/login', [
 
     const data = {
       user: {
-        user: user.id
+        id: user.id
       }
     }
 
@@ -107,12 +107,14 @@ router.post('/login', [
 
 })
 
+
+
 // Route 3 - Get User LOGGED IN  user Details Post api/auth/getuser
 router.post('/getuser', fetchuser, async (req, res) => {
 
 try{
   userId=req.user.id;
-  const user= await User.findById(userId).select("-password")
+  const user= await User.findById(userId).select("password")
      res.send(user);
 }
 catch(error){
